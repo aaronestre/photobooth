@@ -10,8 +10,8 @@ export default function Camera() {
 		navigator.mediaDevices
 			.getUserMedia({
 				video: {
-					width: 1080,
-					height: 1080
+					width: 810,
+					height: 270
 				}
 			})
 			.then((stream) => {
@@ -33,7 +33,7 @@ export default function Camera() {
 	return (
 		<div className="flex flex-col items-center">
 			<video
-				className="object-cover w-[500px] h-[500px] rounded-md"
+				className="object-cover w-[800px] h-[600px] rounded-md"
 				ref={videoRef}
 			/>
 
