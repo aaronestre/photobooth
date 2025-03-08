@@ -1,16 +1,22 @@
 "use client";
 import { useEffect, useState } from "react";
-import {motion} from "motion/react"
+import { motion } from "motion/react";
 
 const FILTERS = [
 	{ name: "Normal", value: "" },
 	{ name: "Grayscale", value: "grayscale(100%)" },
 	{ name: "Sepia", value: "sepia(100%)" },
-	{ name: "Invert", value: "invert(100%)" },
+	{ name: "Invert", value: "invert(100%)" }
 ];
 
 export default function Filters({ videoRef }) {
 	const [currentFilter, setCurrentFilter] = useState("none");
+	const [selected, setSelected] = useState("none");
+
+	const handleClick = (filter) => {
+		setCurrentFilter(filter.value);
+		setSelected(filter.name);
+	};
 
 	useEffect(() => {
 		if (videoRef.current) {
@@ -24,12 +30,12 @@ export default function Filters({ videoRef }) {
 				return (
 					<div
 						key={filter.name}
-                        relative
-						onClick={() => setCurrentFilter(filter.value)}
+						relative
+						onClick={() => handleClick(filter)}
 					>
 						<motion.video
-                            whileHover={{y: -5}}
-                            whileTap={{scale: 0.9}}
+							whileHover={{ y: -5 }}
+							whileTap={{ scale: 0.9 }}
 							key={filter.name}
 							style={{ filter: filter.value }}
 							className="w-24 h-24 rounded-md object-cover"
@@ -44,7 +50,7 @@ export default function Filters({ videoRef }) {
 								}
 							}}
 						/>
-						<div className="bottom-0 left-0 right-0 text-white text-center text-sm py-1 rounded-b-md">
+						<div className={`bottom-0 left-0 right-0 text-center text-sm py-1 rounded-b-md ${selected === filter.name ? "text-amber-400" : "text-white"}`}>
 							{filter.name}
 						</div>
 					</div>
