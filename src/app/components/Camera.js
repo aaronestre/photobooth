@@ -1,33 +1,43 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import Filters from "./filters";
 
 export default function Camera() {
-    const videoRef = useRef(null);
+	const videoRef = useRef(null);
+	const [isVideoReady, setIsVideoReady] = useState(false);
 
-    const getVideo = () => {
-        navigator.mediaDevices.getUserMedia({
-            video: {
-                width: 1080,
-                height: 1080,
-            },
-        })
-        .then(stream => {
-            let video = videoRef.current;
-            video.srcObject = stream;
-            video.play();
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }
+	const getVideo = () => {
+		navigator.mediaDevices
+			.getUserMedia({
+				video: {
+					width: 1080,
+					height: 1080
+				}
+			})
+			.then((stream) => {
+				let video = videoRef.current;
+				video.srcObject = stream;
+				video.play();
 
-    useEffect(() => {
-        getVideo();
-    }, [videoRef]);
+				setIsVideoReady(true);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
-    return (
-        <div>
-            <video className="object-cover w-[500px] h-[500px] border-2 border-white border-solid"ref={videoRef}></video>
-        </div>
-    );
+	useEffect(() => {
+		getVideo();
+	}, []);
+
+	return (
+		<div className="flex flex-col items-center">
+			<video
+				className="object-cover w-[500px] h-[500px] rounded-md"
+				ref={videoRef}
+			/>
+
+			{isVideoReady && <Filters videoRef={videoRef} />}
+		</div>
+	);
 }
