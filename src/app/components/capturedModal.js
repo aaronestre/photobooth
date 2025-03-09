@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef } from "react";
 import downloadjs from "downloadjs";
 import html2canvas from "html2canvas";
@@ -18,7 +19,7 @@ export default function CapturedModal({ isOpen, handleClose, capturedImages }) {
 		const element = downloadRef.current;
 		const canvas = await html2canvas(element);
 		const dataUrl = canvas.toDataURL("image/png");
-        downloadjs(dataUrl, "captured-images.png", "image/png");
+		downloadjs(dataUrl, "captured-images.png", "image/png");
 	};
 
 	return (
