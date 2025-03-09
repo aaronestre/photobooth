@@ -25,7 +25,7 @@ export default function Camera() {
 			setCount(0);
             await wait(100);
             setCount("");
-			await wait(500);
+			await wait(300);
 
 			console.log("Captured");
 			const video = videoRef.current;
