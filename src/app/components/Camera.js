@@ -3,15 +3,12 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import Filters from "./filters";
 import CapturedModal from "./capturedModal";
+import useCamera from "../hooks/useCamera";
 
 export default function Camera() {
-    
+
 	const videoRef = useRef(null);
-	const [isVideoReady, setIsVideoReady] = useState(false);
-	const [isCapturing, setIsCapturing] = useState(false);
-	const [capturedImages, setCapturedImages] = useState([]);
-	const [isModalOpen, setIsModalOpen] = useState(false);
-	const [count, setCount] = useState(0);
+	const { isVideoReady, setIsVideoReady, isCapturing, setIsCapturing, capturedImages, setCapturedImages, isModalOpen, setIsModalOpen, count, setCount } = useCamera();
 
 	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
