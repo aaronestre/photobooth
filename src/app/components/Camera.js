@@ -5,6 +5,7 @@ import Filters from "./filters";
 import CapturedModal from "./capturedModal";
 
 export default function Camera() {
+    
 	const videoRef = useRef(null);
 	const [isVideoReady, setIsVideoReady] = useState(false);
 	const [isCapturing, setIsCapturing] = useState(false);
@@ -18,13 +19,13 @@ export default function Camera() {
 		setIsCapturing(true);
 
 		for (let i = 0; i < 3; i++) {
-			for (let j = 1; j <= 3; j++) {
+			for (let j = 3; j >= 1; j--) {
 				setCount(j);
 				console.log(j);
 				await wait(1000);
 			}
 
-			setCount(4);
+			setCount(0);
             await wait(100);
             setCount("");
 			await wait(500);
@@ -85,7 +86,7 @@ export default function Camera() {
 					ref={videoRef}
 				/>
                 {isCapturing && <div className="absolute inset-0 top-1/2 left-1/2 text-7xl font-bold text-white">{count}</div>}
-				{isCapturing && count === 4 && (
+				{isCapturing && count === 0 && (
 					<div className="absolute inset-0 bg-white z-10 opacity-50"></div>
 				)}
 			</div>
