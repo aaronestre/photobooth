@@ -48,7 +48,7 @@ export default function CapturedModal({ isOpen, handleClose, capturedImages }) {
                 transition={{ delay: 0.5, duration: 0.5, ease: "easeInOut" }}
 				className="w-auto h-auto bg-white flex flex-col items-center justify-center rounded-sm"
 			>
-				<div className="flex flex-col gap-4 justify-center items-center p-4">
+				<div className="flex flex-col gap-4 justify-center items-center p-4 last:mb-12">
 					{capturedImages.map((image, index) => (
 						<img
 							key={index}
