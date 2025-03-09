@@ -5,6 +5,9 @@
   --foreground: #171717;
 
   --background-dark: #1e1e1e;
+
+  --capture-button: #8b050c;
+  --capture-button-hover: #ff0011;
 }
 
 @theme inline {

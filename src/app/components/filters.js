@@ -1,13 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-
-const FILTERS = [
-	{ name: "Normal", value: "" },
-	{ name: "Grayscale", value: "grayscale(100%)" },
-	{ name: "Sepia", value: "sepia(100%)" },
-	{ name: "Invert", value: "invert(100%)" }
-];
+import { FILTERS } from "./filtersData";
 
 export default function Filters({ videoRef }) {
 	const [currentFilter, setCurrentFilter] = useState("none");
@@ -30,7 +24,6 @@ export default function Filters({ videoRef }) {
 				return (
 					<div
 						key={filter.name}
-						relative
 						onClick={() => handleClick(filter)}
 					>
 						<motion.video
