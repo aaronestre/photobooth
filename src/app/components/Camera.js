@@ -10,30 +10,41 @@ export default function Camera() {
 	const [isCapturing, setIsCapturing] = useState(false);
 	const [capturedImages, setCapturedImages] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [count, setCount] = useState(0);
 
-	const handleCapture = () => {
+	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+	const handleCapture = async () => {
 		setIsCapturing(true);
+
 		for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                setTimeout(() => {
-                    console.log(`${j+1}`);
-                }, (i * 3000) + (j * 1000));
-            }
-			setTimeout(() => {
-				console.log("Captured");
-				const video = videoRef.current;
-				const canvas = document.createElement("canvas");
-				canvas.width = 400;
-				canvas.height = 300;
-				const ctx = canvas.getContext("2d");
-				ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-				const image = canvas.toDataURL("image/png");
-				setCapturedImages((prevImgs) => [...prevImgs, image]);
-				if (i === 2) {
-					setIsCapturing(false);
-					setIsModalOpen(true);
-				}
-			}, (i + 1)* 3000);
+			for (let j = 1; j <= 3; j++) {
+				setCount(j);
+				console.log(j);
+				await wait(1000);
+			}
+
+			setCount(4);
+            await wait(100);
+            setCount("");
+			await wait(500);
+
+			console.log("Captured");
+			const video = videoRef.current;
+			const canvas = document.createElement("canvas");
+			canvas.width = 400;
+			canvas.height = 300;
+			const ctx = canvas.getContext("2d");
+			ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+			const image = canvas.toDataURL("image/png");
+			setCapturedImages((prevImgs) => [...prevImgs, image]);
+
+			if (i === 2) {
+				setIsCapturing(false);
+				setIsModalOpen(true);
+			}
+
+			await wait(1000);
 		}
 	};
 
@@ -68,10 +79,16 @@ export default function Camera() {
 
 	return (
 		<div className="flex flex-col items-center">
-			<video
-				className="object-cover w-[800px] h-[600px] rounded-md"
-				ref={videoRef}
-			/>
+			<div className="relative object-cover w-[800px] h-[600px]">
+				<video
+					className="relative object-cover w-[800px] h-[600px] rounded-md"
+					ref={videoRef}
+				/>
+                {isCapturing && <div className="absolute inset-0 top-1/2 left-1/2 text-7xl font-bold text-white">{count}</div>}
+				{isCapturing && count === 4 && (
+					<div className="absolute inset-0 bg-white z-10 opacity-50"></div>
+				)}
+			</div>
 
 			{isVideoReady && <Filters videoRef={videoRef} />}
 
