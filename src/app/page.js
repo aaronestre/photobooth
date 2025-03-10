@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "motion/react";
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -10,7 +11,7 @@ export default function Home() {
 			<p className="text-2xl font-[family-name:var(--font-playfair)]">
 				A virtual photobooth experience
 			</p>
-			<a href="/photobooth">
+			<Link href="/photobooth">
 				<motion.button
 					whileHover={{ scale: 1.1 }}
 					whileTap={{ scale: 0.9 }}
@@ -18,7 +19,7 @@ export default function Home() {
 				>
 					Enter photobooth
 				</motion.button>
-			</a>
+			</Link>
 		</div>
 	);
 }
