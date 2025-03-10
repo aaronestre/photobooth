@@ -79,6 +79,7 @@ export default function CapturedModal({ isOpen, handleClose, capturedImages }) {
 					<motion.button
 						className="bg-(--accent-green) text-white font-bold py-2 px-4 rounded-lg mt-4 w-4/5"
 						whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
 						onClick={handleDownload}
 					>
 						Download Photos
@@ -86,6 +87,7 @@ export default function CapturedModal({ isOpen, handleClose, capturedImages }) {
 					<motion.button
 						className="bg-(--accent-pink) text-white font-bold py-2 px-4 rounded-lg mt-4 w-4/5"
 						whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
 						onClick={handleClose}
 					>
 						Close
