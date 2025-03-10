@@ -6,9 +6,19 @@ import CapturedModal from "./capturedModal";
 import useCamera from "../hooks/useCamera";
 
 export default function Camera() {
-
 	const videoRef = useRef(null);
-	const { isVideoReady, setIsVideoReady, isCapturing, setIsCapturing, capturedImages, setCapturedImages, isModalOpen, setIsModalOpen, count, setCount } = useCamera();
+	const {
+		isVideoReady,
+		setIsVideoReady,
+		isCapturing,
+		setIsCapturing,
+		capturedImages,
+		setCapturedImages,
+		isModalOpen,
+		setIsModalOpen,
+		count,
+		setCount
+	} = useCamera();
 
 	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -23,15 +33,15 @@ export default function Camera() {
 			}
 
 			setCount(0);
-            await wait(100);
-            setCount("");
+			await wait(100);
+			setCount("");
 			await wait(300);
 
 			console.log("Captured");
 			const video = videoRef.current;
 			const canvas = document.createElement("canvas");
-			canvas.width = 400;
-			canvas.height = 300;
+			canvas.width = 800;
+			canvas.height = 600;
 			const ctx = canvas.getContext("2d");
 			ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 			const image = canvas.toDataURL("image/png");
@@ -55,8 +65,8 @@ export default function Camera() {
 		navigator.mediaDevices
 			.getUserMedia({
 				video: {
-					width: 810,
-					height: 270
+					width: 800,
+					height: 600
 				}
 			})
 			.then((stream) => {
@@ -76,13 +86,17 @@ export default function Camera() {
 	}, []);
 
 	return (
-		<div className="flex flex-col items-center">
-			<div className="relative object-cover w-[800px] h-[600px]">
+		<div className="flex flex-col items-center px-4">
+			<div className="relative object-cover w-full max-w-[800px] h-[450px] sm:h-[600px]">
 				<video
-					className="relative object-cover w-[800px] h-[600px] rounded-md"
+					className="relative object-cover w-full h-full rounded-md"
 					ref={videoRef}
 				/>
-                {isCapturing && <div className="absolute inset-0 top-1/2 left-1/2 text-7xl font-bold text-white">{count}</div>}
+				{isCapturing && (
+					<div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-7xl font-bold text-white">
+						{count}
+					</div>
+				)}
 				{isCapturing && count === 0 && (
 					<div className="absolute inset-0 bg-white z-10 opacity-50"></div>
 				)}
@@ -94,8 +108,11 @@ export default function Camera() {
 				onClick={handleCapture}
 				whileTap={{ scale: 0.9 }}
 				disabled={isCapturing}
-				className="w-20 h-20 rounded-[50%] bg-(--capture-button) hover:bg-(--capture-button-hover) border-4 border-white transition-all duration-300 ease-in-out"
+				className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${
+					isCapturing ? "bg-(--accent-pink)" : "bg-(--accent-pink)/60"
+				} hover:bg-(--accent-pink) border-4 border-(--primary-dark) transition-all duration-300 ease-in-out mt-12`}
 			></motion.button>
+
 			{isModalOpen && (
 				<CapturedModal
 					isOpen={isModalOpen}

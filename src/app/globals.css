@@ -1,13 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #1e1e1e;
-  --foreground: #171717;
+  --primary-dark: #00072d;
+  --primary-light: #fff5e4;
+  --secondary: #6A9C89;
+  --accent-pink: #fc5f7c;
+  --accent-green: #a9d9ac;
 
-  --background-dark: #1e1e1e;
 
-  --capture-button: #8b050c;
-  --capture-button-hover: #ff0011;
+  /*
+    00072D
+    FFF5E4
+    6A9C89
+    FC5F7C
+    C1D8C3
+  */
+
+
+  /* Primary Color: #5A67D8 (Soft Indigo)
+
+Secondary Color: #F56565 (Muted Red)
+
+Accent Color: #68D391 (Mint Green)
+
+Background Color: #EDF2F7 (Light Gray)
+
+Text Color: #2D3748 (Charcoal Gray)*/
 }
 
 @theme inline {
