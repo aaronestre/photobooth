@@ -32,7 +32,7 @@ export default function Filters({ videoRef }) {
 							whileTap={{ scale: 0.9 }}
 							key={filter.name}
 							style={{ filter: filter.value }}
-							className="w-full h-full rounded-md object-cover"
+							className="scale-x-[-1] w-full h-full rounded-md object-cover"
 							autoPlay
 							muted
 							playsInline

@@ -89,7 +89,7 @@ export default function Camera() {
 		<div className="flex flex-col items-center px-4">
 			<div className="relative object-cover w-full max-w-[800px] h-[450px] sm:h-[600px]">
 				<video
-					className="relative object-cover w-full h-full rounded-md"
+					className="scale-x-[-1] relative object-cover w-full h-full rounded-md"
 					ref={videoRef}
 				/>
 				{isCapturing && (
@@ -103,15 +103,16 @@ export default function Camera() {
 			</div>
 
 			{isVideoReady && <Filters videoRef={videoRef} />}
-
-			<motion.button
-				onClick={handleCapture}
-				whileTap={{ scale: 0.9 }}
-				disabled={isCapturing}
-				className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${
-					isCapturing ? "bg-(--accent-pink)" : "bg-(--accent-pink)/60"
-				} hover:bg-(--accent-pink) border-4 border-(--primary-dark) transition-all duration-300 ease-in-out mt-12`}
-			></motion.button>
+			{isVideoReady && (
+				<motion.button
+					onClick={handleCapture}
+					whileTap={{ scale: 0.9 }}
+					disabled={isCapturing}
+					className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${
+						isCapturing ? "bg-(--accent-pink)" : "bg-(--accent-pink)/60"
+					} hover:bg-(--accent-pink) border-4 border-(--primary-dark) transition-all duration-300 ease-in-out mt-12`}
+				></motion.button>
+			)}
 
 			{isModalOpen && (
 				<CapturedModal
