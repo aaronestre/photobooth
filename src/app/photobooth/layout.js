@@ -1,5 +1,5 @@
 import "../globals.css";
-import {Lora} from "@next/font/google";
+import {Lora} from "next/font/google";
 
 const lora = Lora({
     variable: "--font-lora",

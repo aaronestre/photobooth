@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Playfair } from "@next/font/google";
+import { Playfair } from "next/font/google";
 
 const playfair = Playfair({
 	variable: "--font-playfair",
