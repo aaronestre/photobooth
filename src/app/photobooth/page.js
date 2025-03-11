@@ -1,4 +1,3 @@
-import Camera from "../components/camera";
 import PhotoCamera from "../components/PhotoCamera";
 import Image from "next/image";
 import Link from "next/link";
