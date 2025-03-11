@@ -4,7 +4,9 @@ import { Playfair } from "@next/font/google";
 const playfair = Playfair({
 	variable: "--font-playfair",
 	weight: ["400", "500", "600", "700"],
-	subsets: ["latin"]
+	subsets: ["latin"],
+    display: "swap",
+    adjustFontFallback: false,
 });
 
 export const metadata = {
