@@ -17,12 +17,15 @@ export default function Camera() {
 		isModalOpen,
 		setIsModalOpen,
 		count,
-		setCount
+		setCount,
+        error,
+        setError
 	} = useCamera();
 
 	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 	const handleCapture = async () => {
+        if (isCapturing) return;
 		setIsCapturing(true);
 
 		for (let i = 0; i < 3; i++) {
@@ -78,6 +81,7 @@ export default function Camera() {
 			})
 			.catch((err) => {
 				console.log(err);
+                setError("Unable to access the camera. Please check your camera settings and permissions.")
 			});
 	};
 
@@ -88,6 +92,8 @@ export default function Camera() {
 	return (
 		<div className="flex flex-col items-center px-4">
 			<div className="relative object-cover w-full max-w-[800px] h-[450px] sm:h-[600px]">
+                {error && <div className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl font-bold text-red">{error}</div>}
+                {!isVideoReady && <div className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl font-bold text-(--primary-dark)">Loading...</div>}
 				<video
 					className="scale-x-[-1] relative object-cover w-full h-full rounded-md"
 					ref={videoRef}

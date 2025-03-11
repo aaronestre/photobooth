@@ -6,6 +6,7 @@ export default function useCamera() {
 	const [capturedImages, setCapturedImages] = useState([]);
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [count, setCount] = useState(0);
+    const [error, setError] = useState(null);
 
 	return {
 		isVideoReady,
@@ -17,6 +18,8 @@ export default function useCamera() {
 		isModalOpen,
 		setIsModalOpen,
 		count,
-		setCount
+		setCount,
+        error,
+        setError
 	};
 }
