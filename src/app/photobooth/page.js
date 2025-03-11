@@ -1,4 +1,5 @@
 import Camera from "../components/camera";
+import PhotoCamera from "../components/PhotoCamera";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +16,7 @@ export default function Home() {
 				/>
 			</Link>
 
-			<Camera />
+			<PhotoCamera />
 		</div>
 	);
 }
