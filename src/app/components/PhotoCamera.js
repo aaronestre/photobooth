@@ -19,10 +19,16 @@ export default function PhotoCamera() {
 		count,
 		setCount,
         error,
-        setError
+        setError,
+        currentFilter,
+        setCurrentFilter
 	} = useCamera();
 
 	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    const handleFilterChange = (filter) => {
+        setCurrentFilter(filter);
+    };
 
 	const handleCapture = async () => {
         if (isCapturing) return;
@@ -46,6 +52,7 @@ export default function PhotoCamera() {
 			canvas.width = 800;
 			canvas.height = 600;
 			const ctx = canvas.getContext("2d");
+            ctx.filter = currentFilter;
 			ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 			const image = canvas.toDataURL("image/png");
 			setCapturedImages((prevImgs) => [...prevImgs, image]);
@@ -104,7 +111,7 @@ export default function PhotoCamera() {
 				)}
 			</div>
 
-			{isVideoReady && <Filters videoRef={videoRef} />}
+			{isVideoReady && <Filters videoRef={videoRef} currentFilter={currentFilter} handleFilterChange={handleFilterChange}/>}
 			{isVideoReady && (
 				<motion.button
 					onClick={handleCapture}

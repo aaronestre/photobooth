@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { FILTERS } from "./filtersData";
 
-export default function Filters({ videoRef }) {
-	const [currentFilter, setCurrentFilter] = useState("none");
+export default function Filters({ videoRef, currentFilter, handleFilterChange }) {
+	//const [currentFilter, setCurrentFilter] = useState("none");
 	const [selected, setSelected] = useState("Normal");
 
 	const handleClick = (filter) => {
-		setCurrentFilter(filter.value);
+		handleFilterChange(filter.value);
 		setSelected(filter.name);
 	};
 

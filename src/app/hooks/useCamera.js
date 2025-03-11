@@ -7,6 +7,7 @@ export default function useCamera() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [count, setCount] = useState(0);
     const [error, setError] = useState(null);
+    const [currentFilter, setCurrentFilter] = useState(null);
 
 	return {
 		isVideoReady,
@@ -20,6 +21,8 @@ export default function useCamera() {
 		count,
 		setCount,
         error,
-        setError
+        setError,
+        currentFilter,
+        setCurrentFilter
 	};
 }
