@@ -62,10 +62,10 @@ export default function PhotoCamera() {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 		setCapturedImages([]);
-	};
+	};	
 
-	const getVideo = () => {
-		navigator.mediaDevices
+	useEffect(() => {
+        navigator.mediaDevices
 			.getUserMedia({
 				video: {
 					width: 800,
@@ -83,11 +83,7 @@ export default function PhotoCamera() {
 				console.log(err);
                 setError("Unable to access the camera. Please check your camera settings and permissions.")
 			});
-	};
-
-	useEffect(() => {
-		getVideo();
-	}, []);
+	}, [setError, setIsVideoReady]);
 
 	return (
 		<div className="flex flex-col items-center px-4">
