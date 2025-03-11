@@ -1,36 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# <center>SmileStation</center>
 
-## Getting Started
+<img src="./public/home.png" alt="Landing Page" />
 
-First, run the development server:
+<center>Web app that virtually recreates a photobooth experience!</center>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Live Demo
+<center><img src="./public/SmileStation.jpeg" width="500px" alt="Photobooth"/></center>
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+#### <center>Try the app [here](https://smilestation.vercel.app/) </center>
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+<center><img src="./public/demo_photos.png" width="100px" alt="Demo photos"/></center>
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+# Features
+- Take pictures using webcam
+- Choose from different filters
+- Pick the color of the photostrip
+- Download the photostrip as a PNG file
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Tech Stack
+- Next.js
+- Javascript
+- TailwindCSS
+- Framer Motion
+- downloadjs
+- html2canvas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Future Improvements
+- Add ability to add custom text to photostrips
