@@ -18,20 +18,20 @@ export default function PhotoCamera() {
 		setIsModalOpen,
 		count,
 		setCount,
-        error,
-        setError,
-        currentFilter,
-        setCurrentFilter
+		error,
+		setError,
+		currentFilter,
+		setCurrentFilter
 	} = useCamera();
 
 	const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-    const handleFilterChange = (filter) => {
-        setCurrentFilter(filter);
-    };
+	const handleFilterChange = (filter) => {
+		setCurrentFilter(filter);
+	};
 
 	const handleCapture = async () => {
-        if (isCapturing) return;
+		if (isCapturing) return;
 		setIsCapturing(true);
 
 		for (let i = 0; i < 3; i++) {
@@ -52,7 +52,7 @@ export default function PhotoCamera() {
 			canvas.width = 800;
 			canvas.height = 600;
 			const ctx = canvas.getContext("2d");
-            ctx.filter = currentFilter;
+			ctx.filter = currentFilter;
 			ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 			const image = canvas.toDataURL("image/png");
 			setCapturedImages((prevImgs) => [...prevImgs, image]);
@@ -69,10 +69,10 @@ export default function PhotoCamera() {
 	const handleCloseModal = () => {
 		setIsModalOpen(false);
 		setCapturedImages([]);
-	};	
+	};
 
 	useEffect(() => {
-        navigator.mediaDevices
+		navigator.mediaDevices
 			.getUserMedia({
 				video: {
 					width: 800,
@@ -88,21 +88,31 @@ export default function PhotoCamera() {
 			})
 			.catch((err) => {
 				console.log(err);
-                setError("Unable to access the camera. Please check your camera settings and permissions.")
+				setError(
+					"Unable to access the camera. Please check your camera settings and permissions."
+				);
 			});
 	}, [setError, setIsVideoReady]);
 
 	return (
-		<div className="flex flex-col items-center px-4">
-			<div className="relative object-cover w-full max-w-[800px] h-[450px] sm:h-[600px]">
-                {error && <div className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl font-bold text-red">{error}</div>}
-                {!isVideoReady && <div className="absolute inset-0 flex items-center justify-center text-2xl sm:text-3xl font-bold text-(--primary-dark)">Loading...</div>}
+		<div className="flex flex-col items-center px-4 w-full max-w-[800px] mx-auto">
+			<div className="relative object-cover w-full h-[300px] sm:h-[450px] md:h-[600px]">
+				{error && (
+					<div className="absolute inset-0 flex items-center justify-center text-lg sm:text-2xl font-bold text-red-500">
+						{error}
+					</div>
+				)}
+				{!isVideoReady && (
+					<div className="absolute inset-0 flex items-center justify-center text-lg sm:text-2xl font-bold text-(--primary-dark)">
+						Loading...
+					</div>
+				)}
 				<video
 					className="scale-x-[-1] relative object-cover w-full h-full rounded-md"
 					ref={videoRef}
 				/>
 				{isCapturing && (
-					<div className="absolute inset-0 flex items-center justify-center text-5xl sm:text-7xl font-bold text-white">
+					<div className="absolute inset-0 flex items-center justify-center text-4xl sm:text-6xl font-bold text-white">
 						{count}
 					</div>
 				)}
@@ -111,15 +121,21 @@ export default function PhotoCamera() {
 				)}
 			</div>
 
-			{isVideoReady && <Filters videoRef={videoRef} currentFilter={currentFilter} handleFilterChange={handleFilterChange}/>}
+			{isVideoReady && (
+				<Filters
+					videoRef={videoRef}
+					currentFilter={currentFilter}
+					handleFilterChange={handleFilterChange}
+				/>
+			)}
 			{isVideoReady && (
 				<motion.button
 					onClick={handleCapture}
 					whileTap={{ scale: 0.9 }}
 					disabled={isCapturing}
-					className={`w-16 h-16 sm:w-20 sm:h-20 rounded-full ${
+					className={`w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-full ${
 						isCapturing ? "bg-(--accent-pink)" : "bg-(--accent-pink)/60"
-					} hover:bg-(--accent-pink) border-4 border-(--primary-dark) transition-all duration-300 ease-in-out mt-12`}
+					} hover:bg-(--accent-pink) border-4 border-(--primary-dark) transition-all duration-300 ease-in-out mt-8 sm:mt-12`}
 				></motion.button>
 			)}
 
