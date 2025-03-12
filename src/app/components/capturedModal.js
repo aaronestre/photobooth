@@ -45,7 +45,7 @@ export default function CapturedModal({ isOpen, handleClose, capturedImages }) {
 			animate={isOpen ? "visible" : "hidden"}
 			variants={modalVariants}
 			transition={{ duration: 0.5, ease: "easeInOut" }}
-			className="w-full max-w-4xl sm:max-w-5xl flex flex-col sm:flex-row items-center justify-around fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-(--primary-light) border-(--primary-dark) border-2 p-6 sm:p-8 rounded-2xl shadow-lg"
+			className="w-full max-w-4xl sm:max-w-5xl flex flex-col sm:flex-row items-center justify-around absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-(--primary-light) border-(--primary-dark) border-2 p-6 sm:p-8 rounded-2xl shadow-lg"
 		>
 			<motion.div
 				ref={downloadRef}
